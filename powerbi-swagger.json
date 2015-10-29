@@ -68,7 +68,7 @@
         'summary': 'Returns the metadata for a specific tile',
         'description': 'A specific Tile instance.',
         'tags':['Tile'],
-        'operationId': 'GetTiles',
+        'operationId': 'GetTile',
     	  'parameters':[ 
       		{
       		  'name': 'dashboardId',
