@@ -121,9 +121,13 @@
           'type': 'string',
           'description': 'Unique identifier representing a specific dashboard.'
   	    },
-        'name':{
+        'displayName':{
           'type': 'string',
-          'description': 'Name of the dasboard.'
+          'description': 'Display Name of the dasboard.'
+  	    },
+        'isReadOnly':{
+          'type': 'boolean',
+          'description': 'Do you have read-only permissions to the dasboard.'
   	    }
   	  }
     },
