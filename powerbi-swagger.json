@@ -7,10 +7,10 @@
   },
   'host': 'api.powerbi.com',
   'schemes':['https'],
-  'basePath': '/v1.0/myorg',
+  'basePath': '',
   'produces':['application/json'],
   'paths':{
-    '/dashboards':{
+    '/beta/myorg/dashboards':{
       'get':{
         'summary': 'Returns a JSON list of all dashboard objects that includes a name and id',
         'description': 'A Dashboard resource path is a collection of dashboard objects owned by a signed in Power BI user.',
@@ -32,7 +32,7 @@
     	  }
     	}
     },
-    '/dashboards/{dashboardId}/tiles':{
+    '/beta/myorg/dashboards/{dashboardId}/tiles':{
       'get':{
         'summary': 'Returns a JSON list of tiles for the specified dashboard.',
         'description': 'A Tiles resource path is a collection of tile objects of a particular dashboard.',
@@ -63,7 +63,7 @@
     	  }
     	}
     },
-    '/dashboards/{dashboardId}/tiles/{tileId}':{
+    '/beta/myorg/dashboards/{dashboardId}/tiles/{tileId}':{
       'get':{
         'summary': 'Returns the metadata for a specific tile',
         'description': 'A specific Tile instance.',
