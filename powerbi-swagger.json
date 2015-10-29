@@ -1,0 +1,179 @@
+{
+  'swagger': '2.0',
+  'info':{
+    'title': 'PowerBI API',
+    'description': 'PowerBI API',
+    'version': '1.0.0'
+  },
+  'host': 'api.powerbi.com',
+  'schemes':['https'],
+  'basePath': '/v1.0/myorg',
+  'produces':['application/json'],
+  'paths':{
+    '/dashboards':{
+      'get':{
+        'summary': 'Returns a JSON list of all dashboard objects that includes a name and id',
+        'description': 'A Dashboard resource path is a collection of dashboard objects owned by a signed in Power BI user.',
+        'tags':['Dashboard'],
+        'operationId': 'GetDashboards',
+        'responses':{
+          '200':{
+            'description': 'A collection of dashboards',
+            'schema':{
+              '$ref': '#/definitions/DashboardCollection'
+      		  }
+      		},
+          'default':{
+            'description': 'Unexpected error',
+            'schema':{
+              '$ref': '#/definitions/Error'
+      		  }
+      		}
+    	  }
+    	}
+    },
+    '/dashboards/{dashboardId}/tiles':{
+      'get':{
+        'summary': 'Returns a JSON list of tiles for the specified dashboard.',
+        'description': 'A Tiles resource path is a collection of tile objects of a particular dashboard.',
+        'tags':['Tile'],
+        'operationId': 'GetTiles',
+    	  'parameters':[
+    		{
+    		  'name': 'dashboardId',
+    		  'description': 'Unique guid of the Dashboard to use',
+    		  'in': 'path',
+    		  'required': true,
+    		  'type': 'string'
+            }
+    	  ],
+        'responses':{
+          '200':{
+            'description': 'A collection of dashboards',
+            'schema':{
+              '$ref': '#/definitions/TileCollection'
+  		      }
+  		    },
+          'default':{
+            'description': 'Unexpected error',
+            'schema':{
+              '$ref': '#/definitions/Error'
+      		  }
+      		}
+    	  }
+    	}
+    },
+    '/dashboards/{dashboardId}/tiles/{tileId}':{
+      'get':{
+        'summary': 'Returns the metadata for a specific tile',
+        'description': 'A specific Tile instance.',
+        'tags':['Tile'],
+        'operationId': 'GetTiles',
+    	  'parameters':[ 
+      		{
+      		  'name': 'dashboardId',
+      		  'description': 'Unique guid of the Dashboard to use',
+      		  'in': 'path',
+      		  'required': true,
+      		  'type': 'string'
+      		},
+      		{
+      		'name': 'tileId',
+      		'description': 'ID of the tile',
+      		'in': 'path',
+      		'required': true,
+      		'type': 'string'
+      		}
+    	  ],
+        'responses':{
+          '200':{
+            'description': 'A collection of dashboards',
+            'schema':{
+              '$ref': '#/definitions/Tile'
+      		  }
+      		},
+          'default':{
+            'description': 'Unexpected error',
+            'schema':{
+              '$ref': '#/definitions/Error'
+      		  }
+      		}
+    	  }
+      }
+    }
+  },
+  'definitions':{
+    'DashboardCollection':{
+      'type': 'object',
+      'properties':{
+        'value':{
+          'type': 'array',
+          'items':{
+            '$ref': '#/definitions/Dashboard'
+  		    }
+  	    }
+  	  }
+    },
+    'Dashboard':{
+      'type': 'object',
+      'properties':{
+        'id':{
+          'type': 'string',
+          'description': 'Unique identifier representing a specific dashboard.'
+  	    },
+        'name':{
+          'type': 'string',
+          'description': 'Name of the dasboard.'
+  	    }
+  	  }
+    },
+    'TileCollection':{
+      'type': 'object',
+      'properties':{
+        'value':{
+          'type': 'array',
+          'items':{
+            '$ref': '#/definitions/Tile'
+		      }
+  	    }
+  	  }
+    },
+    'Tile':{
+      'type': 'object',
+      'properties':{
+        'id':{
+          'type': 'string',
+          'description': 'Unique identifier representing a specific title.'
+  	    },
+        'title':{
+          'type': 'string',
+          'description': 'Name of the tile.'
+  	    },
+        'subTitle':{
+          'type': 'string',
+          'description': 'Sub title of the tile.'
+  	    },
+        'embedUrl':{
+          'type': 'string',
+          'description': 'Embed Url for the tile'
+	      },
+        'embedData':{
+          'type': 'string',
+          'description': 'Embed Data for the tile'
+  	    }
+  	  }
+    },
+    'Error':{
+      'type': 'object',
+      'properties':{
+        'code':{
+          'type': 'integer',
+          'format': 'int32'
+  	    },
+        'message':{
+          'type': 'string'
+  	    }
+  	  }
+    }
+  }
+}
